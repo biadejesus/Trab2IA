@@ -1,0 +1,27 @@
+20491
+5    9054
+4    6039
+3    2184
+2    1793
+1    1421
+Name: Rating, dtype: int64
+chi-quadrado  100
+
+Classificador SVM: 
+Predicão...
+melhores parametros:  {'C': 100, 'class_weight': 'balanced', 'gamma': 0.001, 'kernel': 'linear'}
+Classification_report:
+              precision    recall  f1-score   support
+
+           0       0.82      0.89      0.85       560
+           1       0.61      0.63      0.62       535
+           2       0.75      0.67      0.71       537
+
+    accuracy                           0.73      1632
+   macro avg       0.73      0.73      0.73      1632
+weighted avg       0.73      0.73      0.73      1632
+
+
+[[497  55   8]
+ [ 86 336 113]
+ [ 22 156 359]]
