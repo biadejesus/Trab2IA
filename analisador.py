@@ -86,19 +86,38 @@ print("chi-quadrado ", k)
 selector = SelectKBest(chi2, k=k)
 X_sentences = selector.fit_transform(X_sentences, Y_sentences)
 
-print("\nClassificador SVM: ")
+# print("\nClassificador SVM: ")
+# smt = SMOTETomek()
+# param_grid = [{'class_weight': ['balanced'],'kernel': ['rbf', 'linear', 'poly', 'sigmoid'], 'gamma': [1e-3, 1e-4], 'C': [1, 10, 100, 1000]}]
+# clf = GridSearchCV(SVC(), param_grid, cv = 5, n_jobs=-1) 
+
+# X_sentences, Y_sentences = smt.fit_resample(X_sentences, Y_sentences)
+# clf = clf.fit(X_sentences, Y_sentences)
+# print("Predicão...")
+# pred = cross_val_predict(clf, X_sentences, Y_sentences, cv = 5, n_jobs = -1)
+
+# print('melhores parametros: ', clf.best_params_)
+
+# print("Classification_report:")
+# print(classification_report(Y_sentences, pred,  zero_division = 0))
+# print("")
+# print(confusion_matrix(Y_sentences, pred))
+
+
+# #################### MLP ###############################
+print("\nClassificador MLP:")
+param_grid = [{'learning_rate' :['constant', 'invscaling', 'adaptive'], 'activation': ['identity', 'logistic', 'tanh', 'relu'], 'alpha': [0.0001, 0.05], 'hidden_layer_sizes': [(50,50), (100,50)], 'solver': ['sgd', 'adam']}]
+#param_grid = [{'activation': ['relu', 'identity', 'logistic', 'tanh'], 'alpha': [0.0001], 'hidden_layer_sizes': [(100,50)], 'solver': ['adam'], 'learning_rate' :['constant', 'invscaling', 'adaptive']}]
 smt = SMOTETomek()
-param_grid = [{'class_weight': ['balanced'],'kernel': ['rbf', 'linear', 'poly', 'sigmoid'], 'gamma': [1e-3, 1e-4], 'C': [1, 10, 100, 1000]}]
-clf = GridSearchCV(SVC(), param_grid, cv = 5, n_jobs=-1) 
-
-X_sentences, Y_sentences = smt.fit_resample(X_sentences, Y_sentences)
+#X_sentences, Y_sentences = smt.fit_resample(X_sentences, Y_sentences)
+clf = GridSearchCV(MLPClassifier(), param_grid, cv = 5, n_jobs=-1)
 clf = clf.fit(X_sentences, Y_sentences)
-print("Predicão...")
-pred = cross_val_predict(clf, X_sentences, Y_sentences, cv = 5, n_jobs = -1)
 
-print('melhores parametros: ', clf.best_params_)
+print("Predicão...")
+pred = cross_val_predict(clf, X_sentences, Y_sentences, cv=5, n_jobs=-1)
 
 print("Classification_report:")
 print(classification_report(Y_sentences, pred,  zero_division = 0))
 print("")
 print(confusion_matrix(Y_sentences, pred))
+print('melhores parametros: ', clf.best_params_)

@@ -1,0 +1,27 @@
+20491
+5    9054
+4    6039
+3    2184
+2    1793
+1    1421
+Name: Rating, dtype: int64
+chi-quadrado  100
+
+Classificador MLP:
+Predicão...
+Classification_report:
+              precision    recall  f1-score   support
+
+           0       0.78      0.74      0.76       269
+           1       0.63      0.67      0.65       563
+           2       0.72      0.69      0.70       568
+
+    accuracy                           0.69      1400
+   macro avg       0.71      0.70      0.70      1400
+weighted avg       0.69      0.69      0.69      1400
+
+
+[[198  57  14]
+ [ 47 376 140]
+ [  9 166 393]]
+melhores parametros:  {'activation': 'logistic', 'alpha': 0.0001, 'hidden_layer_sizes': (100, 50), 'learning_rate': 'constant', 'solver': 'adam'}
